@@ -1,0 +1,25 @@
+{% extends "blog/base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+	{% for image in productImages %}
+		<div class="row">
+  			<div class="col-md-4">.col-md-4</div>
+				
+			
+				<img  class="img-responsive" src='{{ productImages.image }}' height="200" width="200" />
+				
+				<p> {{ productImages.title }}</p>
+		</div>
+	{%endfor %}
+
+{% endblock content %}
+    
+    
+    
+    
+    
+
+
+ 
+

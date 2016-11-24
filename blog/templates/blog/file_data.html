@@ -1,0 +1,13 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+<h1>hi File content will apear here</h1>
+	<div>
+		{% for gene in Name %}
+		<h4>{{ gene }}</h4>
+		{% endfor %}
+    <h1> The mean of gene length </h1>
+		<h2>{{mm}}</h2>
+	</div>
+
+{% endblock content %}

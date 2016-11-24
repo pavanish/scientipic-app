@@ -1,0 +1,58 @@
+
+{% extends "blog/base.html" %}
+
+{% block content %}
+		<div>
+			<h2>How to use the scriptWriter!</h2>
+			<p>There five text input area, first three in upper row is required
+			for generating bawtie2 alignment command. In the box labbeled fast1 write
+			fastq1 file name (eg, MYC1_1.fastq.gz), and in the box labbeled fastq2
+			write corresponding paired fastq2 file (MYC1_2.fastq.gz). In the 3rd input
+			 box write the name of the bam file (eg,if you want to save this alignement
+			 file as MYC1_test.bam) </p>
+			 <p> For gennarting MACS peak calling script, input the name of the
+			 test bam file in box labbeled as test file (eg, MYC1_test.bam),write
+		   name of the corresponding input file for MYC1_test_bam
+			 (eg, Input_MYC1.bam)</p>
+			 <p>click on one or both of the check box to generate the script,and click
+				 generateScript. The required commands will be shown on the webpage. Copy
+				 these commands and save in in plane text file (not in word document).On
+				 linux gedit (default text editor on ubuntu linux) can be used,if you are
+				 on macOS i suggest to use any text editor like textWrangler, Atom, etc..
+				 Save the file (do not put any space in file name) as plane text file.
+				 This file need to have excutable permission so open the terminal on MAC
+				 or Linux and run the following command <pre>chmode 755 scriptFileName</pre>
+				 Now you can use this script file to run the code. As the code generated
+				 by this app asumes a directory structure, first make a folder on Desktop
+				 name it chip_seq_proj.Inside the chip_seq_proj create another folder
+				 named: bamfiles, sorted_files, rmdup_index_files. Place all your fastq
+				 files in chip_seq_proj folder and run the script file from this folder.
+				 So <pre>cd ~/Desktop/chip_seq_proj</pre> br run <pre>/.scriptFileName</pre>
+
+
+				 <p>Also to execute the script you need to have all the tools installed
+				 (ofcoarse write?) and for bawtie alignment  download
+				 prebuilt index and keep it in this location </strong> ~/Genomes/hg19/hg19
+			 </strong> i.e make Genomes folder in your home directory and make hg19 folder
+			 inside it and keep the genome index file inside it.This will work only for
+			 human gneome as you can guess from hg19. Thats` all for now, go and use
+			 this app to generate the script file and run the commands in batch mode.
+
+		 		</p>
+
+				 <p/>
+		</div>
+			<hr style="height:5px; border:none; color:#000; background-color:#000;" >
+		<div>
+			{% for f in script %}
+			<pre>{{ f }}</pre>
+			{% endfor %}
+		</div>
+
+		<div>
+			{% for data in datalist %}
+			<h4>{{ data }}</h4>
+			{% endfor %}
+		</div>
+
+{% endblock content %}

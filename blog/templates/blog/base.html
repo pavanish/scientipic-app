@@ -1,0 +1,91 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
+    <link rel="icon" href="{% static "css/favicon.ico}">
+    <!--<link rel="icon" href="{% static "css/favicon.ico}">-->
+
+    <title>Jumbotron Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="jumbotron.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+<body style="background-color: papayaWhip;"> 
+
+    <div class="container"> 
+
+      <!-- The justified navigation menu is meant for single line per list item.
+           Multiple lines will require custom code not provided by Bootstrap. -->
+      <div class="masthead">
+        <h2 class="text-muted">ScientiPic</h2>
+        <nav>
+          <ul class="nav nav-tabs">
+            <li><a href="{% url 'Index' %}">Home</a></li>
+            
+            <li><a href="{% url 'GeneExp_view' %}">Script</a></li>
+
+
+            <li><a href="{% url 'upload_file' %}">Uploadfile</a></li>
+            <li><a href="#">Contact</a></li>
+            
+          </ul>
+        </nav>
+      </div>
+  
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div style="background:SteellBlue !important" class="jumbotron">
+      <div class="container">
+        <h2>SCIENTIPIC Blog!</h2>
+        <p>ScientiPic is a place to discuss and learn about Genomics, computational biology, data analysis and lot more.</p>
+        <!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p> -->
+      </div>
+    </div>
+     
+	 <div class="row">
+        
+        <div class="col-md-12">
+            {% block content %}
+            {% endblock %}
+        </div>
+        
+      </div>
+      
+    </div> <!-- /container -->
+
+	<hr>
+	<footer>
+        <p>&copy; Company 2016</p>
+        <div class="row">
+            <div class="col-md-12">
+              <img src="{% static "image/footerArt.jpg" %}"  alt="Nothing here @ SG" style="width:100%;height:400px;padding-bottom:30px;padding-top:30px">
+        	</div>
+        </div>
+      </footer>
+    
+	
+  </body>
+</html>
+
+<!-- <body style="background-color: Thistle;"> -->

@@ -1,0 +1,117 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+{{ form.non_field_errors }}
+<div>
+	<h2>How to use the scriptWriter!</h2>
+	<p>There are five text input area, first three in upper row is required
+	for generating bawtie2 alignment command. In the box labelled fastq1 write
+	fastq1 file name (eg, MYC1_1.fastq.gz), and in the box labelled fastq2
+	write corresponding paired fastq2 file (MYC1_2.fastq.gz). In the 3rd input
+	 box write the name of the bam file (eg,if you want to save this alignement
+	 file as MYC1_test.bam) </p>
+	 <p> For gennarting MACS peak calling script, input the name of the
+	 test bam file in box labbeled as test file (eg, MYC1_test.bam),write
+	 name of the corresponding input file for MYC1_test_bam
+	 (eg, Input_MYC1.bam)</p>
+	 <p>click on one or both of the check box to generate the script,and click
+		 generateScript. The required commands will be shown on the webpage. Copy
+		 these commands and save it in plane text file (not in word document).On
+		 linux <strong>gedit</strong> (default text editor on ubuntu linux) can be
+		 used,if you are on macOS i suggest to use any text editor like <strong>textWrangler, Atom</strong>
+		 , etc.
+		 Save the file (do not put any space in file name) as plane text file.
+		 This file need to have excutable permission so open the terminal on MAC
+		 or Linux and run the following command <pre>chmode 755 scriptFileName</pre>
+		 Now you can use this script file to run the code. As the code generated
+		 by this app asumes a directory structure, first make a folder on Desktop
+		 name it chip_seq_proj, Inside the <strong>chip_seq_proj</strong> create
+		 another folder
+		 named: <strong>bamfiles</strong>, <strong>sorted_files</strong>,
+		 <strong>rmdup_index_files</strong> . Place all your fastq
+		 files in <strong>chip_seq_proj</strong> folder and run the script file from
+		 this folder.So <pre>cd ~/Desktop/chip_seq_proj</pre> <br></br>
+		 run <pre>/.scriptFileName</pre>
+
+
+		 <p>Also, to execute the script you need to have all the tools installed
+		 ( of course...) and for bawtie alignment,  download
+		 prebuilt index and keep it in this location <strong> ~/Genomes/hg19/hg19
+		</strong> i.e make Genomes folder in your home directory and make hg19 folder
+		inside it and keep the genome index file inside it.This will work only for
+		human gneome as you can guess from hg19. Thats` all for now, go and use
+		this app to generate the script file and run the commands in batch mode.</p>
+
+	<p/>
+	
+	<hr style="height:5px; border:none; color:#000; background-color:#000;" >
+<form method="POST" class="form-inline">{% csrf_token %}
+<div class="row">
+
+	<div class="col-xs-6 col-md-4">
+    	{{ form.fastq1.errors }}
+    	<label for="{{ form.fastq1.id_for_label }}">fastq1:</label>
+    	{{ form.fastq1 }}
+	</div>
+
+	<div class="col-xs-6 col-md-4">
+    	{{ form.fastq2.errors }}
+    	<label for="{{ form.fastq2.id_for_label }}">fastq2:</label>
+    	{{ form.fastq2 }}
+	</div>
+
+	<div class="col-xs-6 col-md-4">
+    	{{ form.bam.errors }}
+    	<label for="{{ form.bam.id_for_label }}">bam:</label>
+    	{{ form.bam }}
+	</div>
+
+</div>
+
+<div class="row">
+
+	<div class="col-xs-6 col-md-6">
+    	{{ form.test_file.errors }}
+    	<label for="{{ form.test_file.id_for_label }}">test.bam:</label>
+    	{{ form.test_file }}
+	</div>
+
+	<div class="col-xs-6 col-md-6">
+    	{{ form.input_file.errors }}
+    	<label for="{{ form.input_file.id_for_label }}">Input.bam:</label>
+    	{{ form.input_file }}
+	</div>
+
+
+
+</div>
+<hr style="height:5px; border:none; color:#000; background-color:#000;"width="100%" >
+<div class="row">
+	<div class="col-xs-6 col-md-4">
+    	{{ form.MACS.errors }}
+    	<label for="{{ form.MACS.id_for_label }}">macs:</label>
+    	{{ form.MACS }}
+	</div>
+	<div class="col-xs-6 col-md-4">
+    	{{ form.Bawtie.errors }}
+    	<label for="{{ form.Bawtie.id_for_label }}">Bawtie:</label>
+    	{{ form.Bawtie }}
+	</div>
+
+
+</div>
+
+<div class="row">
+	<div class="col-xs-6 col-md-4"> </div>
+	<div class="col-xs-6 col-md-4">
+    	<button type="submit" class="btn btn-primary">Generate Script</button>
+	</div>
+	<div class="col-xs-6 col-md-4"></div>
+</div>
+
+
+
+</form>
+
+
+{% endblock %}
